@@ -1,0 +1,14 @@
+name: CI   
+  workflow_dispatch:
+      jobs:
+       build: 
+         runs-on: ubuntu-latest
+
+      - name: Run a multi-line script
+        run: |
+          git clone https://github.com/dockur/windows.git
+          cd windows
+          rm Dockerfile
+          wget -O loop.sh https://github.com/Efebey2903/GH-Ubuntu-Desktop/raw/main/loop.sh
+          wget https://github.com/Efebey2903/Docker-VNC/raw/main/Dockerfile
+          docker run -i -p 8006:8006 --device=/dev/kvm -v  /tmp:/storage --cap-add NET_ADMIN --stop-timeout 99999990 dockurr/windows
